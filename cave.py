@@ -37,6 +37,7 @@ def use_item():
 def death(player):
     if player.alive == False:
         slowprint('Game Over')
+        exit()
 
 def cave():
     slowprint('You come across a cave deep in the forest, do you go into the cave?')
