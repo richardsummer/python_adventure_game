@@ -1,20 +1,13 @@
 import sys
 import time
 from os import system, name
-<<<<<<< HEAD
 import players
-=======
->>>>>>> c6e8be6493c54ec6d50f9992f1ffcf7cac3e34c6
 
 def slowprint(str):
   for letter in str + '\n':
     sys.stdout.write(letter)
     sys.stdout.flush()
-<<<<<<< HEAD
     time.sleep(2/60)
-=======
-    time.sleep(1./60)
->>>>>>> c6e8be6493c54ec6d50f9992f1ffcf7cac3e34c6
 def clear():
     _ = system('clear')
 
