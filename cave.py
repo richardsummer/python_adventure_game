@@ -31,10 +31,11 @@ def cave():
         slowprint('While you panice you fail to notice that you caused a rockslide. You inevitable end up dying.')
         death(player)
     elif panic == 'N':
-        slowprint('You continue down the cave. Surpisingly the inside of the cave is well lit up. You come accross a stray dog. Do you stop to pet it or continue onward?')
-    pet_the_dog = input('Y/N \n')
-    if pet_the_dog == 'Y':
-        slowprint('You approach the dog, the dog seems friendly at first but as you reach out to pet the dog, it lashes out and bites you. The dog runs away and you are left with a bite mark on your hand. You continue onward and you are bewildered as you notice that there is a market inside the cave.')
-    elif pet_the_dog == 'N':
-        slowprint('The dog wimpers and begs for attention but you pay it no mind. You continue onward and you are bewildered as you notice that there is a market inside the cave.')
+        slowprint('You continue down the cave. Surpisingly the inside of the cave is well lit up. You come accross a stray dog. Do you stop to pet it?')
+        pet_the_dog = input('Y/N \n')
+        if pet_the_dog == 'Y':
+            slowprint('You approach the dog, the dog seems friendly at first but as you reach out to pet the dog, it lashes out and bites you. The dog runs away and you are left with a bite mark on your hand. You continue onward and you are bewildered as you notice that there is a market inside the cave.')
+        elif pet_the_dog == 'N':
+            slowprint('The dog wimpers and begs for attention but you pay it no mind. You continue onward and you are bewildered as you notice that there is a market inside the cave.')
+
 cave()
