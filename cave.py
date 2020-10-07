@@ -14,19 +14,23 @@ def clear():
 clear()
 player = players.Player()
 
-player_items = {1: 'Potion', 2: 'Torch', 'Coinpurse': 100}
-
 def use_item():
     slowprint('Do you want to use an item?')
     item_select = input('Y/N \n')
     if item_select == 'Y':
-        print('Which item would you like to use?', player_items)
+        print('Which item would you like to use?', player.items)
         selected_item = int(input(''))
         if selected_item == 1:
             player.hp += 10
-            player_items.pop(1)
+            player.items.pop(1)
             slowprint(f"Your health has been regained! You are now at {player.hp} health")
-            print(player_items)
+            # print(player.items)
+        elif selected_item == 2:
+            slowprint("It does nothing to help you... \n You have wasted a torch")
+            player.items.pop(2)
+        elif selected_item == 3:
+            slowprint('You take out your Coin purse to inspect it. You fumble the coin purse and drop all of your gold...\n way to go loser')
+            player.items.pop(3)
     # elif item_select == 'N':
     #     pass
 
@@ -53,8 +57,11 @@ def cave():
             player.hp -= 5
             slowprint(f"You approach the dog, the dog seems friendly at first but as you reach out to pet the dog, it lashes out and bites you. You take some damage, you are now at {player.hp} health. The dog runs away and you are left with a bite mark on your hand but you don\'t think it\'s a big deal.")
             use_item()
-            slowprint('You continue onward and you are bewildered as you notice that there is a market inside the cave.')
+            if player.items == {1: 'Potion', 2: 'Torch'}:
+                slowprint('You begrudgingly continue downward. As you walk the ground beneath you begins to crumble and you fall into the abyss')
+            else:
+                slowprint('You continue onward and as you walk the ground beneath you begins to crumble and you fall into the abyss')
         elif pet_the_dog == 'N':
-            slowprint('The dog wimpers and begs for attention but you pay it no mind. You continue onward and you are bewildered as you notice that there is a market inside the cave.')
+            slowprint('The dog wimpers and begs for attention but you pay it no mind. You continue onward and as you walk the ground beneath you begins to crumble and you fall into the abyss')
 
 cave()
