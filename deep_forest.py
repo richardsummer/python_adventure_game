@@ -30,10 +30,10 @@ def deepForest():
 
     Would you like to proceed into the forest?
     ''')
-    forest_cont = input('Y/N \n')
+    forest_cont = input('Y/N \n').upper
     if forest_cont == 'Y':
         slowprint('You come to an old well. Drink out of the well?')
-        drink_well = input('Y/N \n')
+        drink_well = input('Y/N \n').upper
     elif forest_cont == 'N':
         cave.cave()
     if drink_well == 'Y':
@@ -42,14 +42,14 @@ def deepForest():
         death(player)
     elif drink_well == 'N':
         slowprint('You are too good for well water. Continue walking?')
-    cont_walk = input('Y/N \n')
+    cont_walk = input('Y/N \n').upper
     if cont_walk == 'Y':
         slowprint('You see a dark silhouette in the distance. Go towards it?')
     elif cont_walk == 'N':
         slowprint('You decide to sit in the middle of a dark forest with no water. You died... and probably deserved to.')
         player.alive = False
         death(player)
-    walk_toward = input('Y/N \n')
+    walk_toward = input('Y/N \n').upper
     if walk_toward == 'Y':
         slowprint('It is a town guard! He helps you out of the dark forest and takes you to the market!')
         market.market()
