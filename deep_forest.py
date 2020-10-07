@@ -12,8 +12,6 @@ def clear():
 
 clear()
 
-
-
 def deepForest():
     slowprint('''It is very dark here and the forest is even more dense.
 
