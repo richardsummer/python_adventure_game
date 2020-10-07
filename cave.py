@@ -28,7 +28,7 @@ def cave():
     panic = input('Y/N \n')
     if panic == 'Y':
         player.alive = False
-        slowprint('While you panice you fail to notice that you caused a rockslide. You inevitable end up dying.')
+        slowprint('While you panick you fail to notice that you caused a rockslide. You inevitable end up dying.')
         death(player)
     elif panic == 'N':
         slowprint('You continue down the cave. Surpisingly the inside of the cave is well lit up. You come accross a stray dog. Do you stop to pet it?')
