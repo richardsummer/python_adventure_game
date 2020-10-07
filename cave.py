@@ -14,17 +14,17 @@ def clear():
 clear()
 player = players.Player()
 
-player_items = ['Potion', 'Torch']
+player_items = {1: 'Potion', 2: 'Torch', 'Coinpurse': 100}
 
 def use_item():
     slowprint('Do you want to use an item?')
     item_select = input('Y/N \n')
     if item_select == 'Y':
         print('Which item would you like to use?', player_items)
-        selected_item = input('')
-        if selected_item == 'Potion':
+        selected_item = int(input(''))
+        if selected_item == 1:
             player.hp += 10
-            player_items.pop(0)
+            player_items.pop(1)
             slowprint(f"Your health has been regained! You are now at {player.hp} health")
             print(player_items)
     # elif item_select == 'N':
