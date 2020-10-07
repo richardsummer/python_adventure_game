@@ -14,6 +14,22 @@ def clear():
 clear()
 player = players.Player()
 
+player_items = {1: 'Potion', 2: 'Torch', 'Coinpurse': 100}
+
+def use_item():
+    slowprint('Do you want to use an item?')
+    item_select = input('Y/N \n')
+    if item_select == 'Y':
+        print('Which item would you like to use?', player_items)
+        selected_item = int(input(''))
+        if selected_item == 1:
+            player.hp += 10
+            player_items.pop(1)
+            slowprint(f"Your health has been regained! You are now at {player.hp} health")
+            print(player_items)
+    # elif item_select == 'N':
+    #     pass
+
 def death(player):
     if player.alive == False:
         slowprint('Game Over')
@@ -34,7 +50,10 @@ def cave():
         slowprint('You continue down the cave. Surpisingly the inside of the cave is well lit up. You come accross a stray dog. Do you stop to pet it?')
         pet_the_dog = input('Y/N \n')
         if pet_the_dog == 'Y':
-            slowprint('You approach the dog, the dog seems friendly at first but as you reach out to pet the dog, it lashes out and bites you. The dog runs away and you are left with a bite mark on your hand. You continue onward and you are bewildered as you notice that there is a market inside the cave.')
+            player.hp -= 5
+            slowprint(f"You approach the dog, the dog seems friendly at first but as you reach out to pet the dog, it lashes out and bites you. You take some damage, you are now at {player.hp} health. The dog runs away and you are left with a bite mark on your hand but you don\'t think it\'s a big deal.")
+            use_item()
+            slowprint('You continue onward and you are bewildered as you notice that there is a market inside the cave.')
         elif pet_the_dog == 'N':
             slowprint('The dog wimpers and begs for attention but you pay it no mind. You continue onward and you are bewildered as you notice that there is a market inside the cave.')
 
