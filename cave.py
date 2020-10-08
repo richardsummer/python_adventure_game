@@ -18,21 +18,21 @@ def use_item():
     slowprint('Do you want to use an item?')
     item_select = input('Y/N \n').upper()
     if item_select == 'Y':
-        print('Which item would you like to use?', player.items)
+        print('Which item would you like to use? Type in either 0 or 1', player.items)
         selected_item = int(input(''))
-        if selected_item == 1:
+        if selected_item == 0:
             player.hp += 10
-            player.items.pop(1)
+            player.items.pop(0)
             slowprint(f"Your health has been regained! You are now at {player.hp} health")
             print('Items left: ', player.items)
-        elif selected_item == 2:
+        elif selected_item == 1:
             slowprint("It does nothing to help you... \n You have wasted a torch")
-            player.items.pop(2)
+            player.items.pop(1)
             print('Items left: ', player.items)
-        elif selected_item == 3:
-            slowprint('You take out your Coin purse to inspect it. You fumble the coin purse and drop all of your gold...\n way to go loser')
-            player.items.pop(3)
-            print('Items left: ', player.items)
+        # elif selected_item == 'Gold':
+        #     slowprint('You take out your Coin purse to inspect it. You fumble the coin purse and drop all of your gold...\n way to go loser')
+        #     player.items.pop('Gold')
+        #     print('Items left: ', player.items)
 
 def market():
     slowprint('Goblins! You freak out but notice that they aren\'t attacking you.')
@@ -42,7 +42,53 @@ def market():
     if shop == 'Y':
         shop_items = {'Torch': 25, 'Medicine': 50, 'Rope': 50}
         print('What would you like to buy?', shop_items)
-        print('Your gold: ', player.items.get(3))
+        print('Your gold: ', player.gold)
+        isShopping = True
+
+        while isShopping is True or player.gold > 0:
+
+            buy = input('Type in name of item you want to buy: ')
+            if buy == 'Medicine' and player.gold >= 50:
+                player.gold -= shop_items['Medicine']
+                player.items.append('Medicine')
+                print(player.gold)
+                continueShopping = input('Do you want to continue shopping? Y or N: \n').upper()
+                if continueShopping == 'N' and player.gold > 0:
+                    slowprint('You better have spent all your money..')
+                    isShopping = False
+                    break
+            elif buy == 'Torch' and player.gold >= 25:
+                player.gold -= shop_items['Torch']
+                player.items.append('Torch')
+                print(player.gold)
+                continueShopping = input('Do you want to continue shopping? Y or N: \n').upper()
+                if continueShopping == 'N' and player.gold > 0:
+                    slowprint('You better have spent all your money..')
+                    isShopping = False
+                    break
+            elif buy == 'Rope':
+                player.gold -= shop_items['Rope']
+                player.items.append('Rope')
+                print(player.gold)
+                continueShopping = input('Do you want to continue shopping? Y or N: \n').upper()
+                if continueShopping == 'N' and player.gold > 0:
+                    slowprint('You better have spent all your money..')
+                    isShopping = False
+                    break
+            elif buy == 'Pickaxe':
+                player.gold -= shop_items['Pickaxe']
+                player.items.append('Pickaxe')
+                print(player.gold)
+                continueShopping = input('Do you want to continue shopping? Y or N: \n').upper()
+                if continueShopping == 'N' and player.gold > 0:
+                    slowprint('You better have spent all your money..')
+                    isShopping = False
+                    break
+            else:
+                slowprint('You do not have enough gold for that.')
+                print(player.items)
+                break
+>>>>>>> the market funcationality is working
 
 
 
@@ -75,7 +121,7 @@ def cave_path_2():
         player.hp -= 50
         slowprint(f"You approach the corgi, it seems friendly at first but as you reach out to pet it, it lashes out and bites you. Despite its small and innocent looks its bite packs a punch and you lose half your hp. You are now at {player.hp} health. The corgi runs away and you are left with a bite mark on your hand.")
         use_item()
-        if player.items == {1: 'Potion', 2: 'Torch'}:
+        if player.items == ['Potion', 'Torch']:
             slowprint('Having lost all your gold, you decide not to go to the market.')
             slowprint('You walk for a few minutes but suddenly an excruciating shoots up from your hand. You think to yourself "The bite mark"! The corgi was rabid, you start to feel dizzy. You lose consciousness')
             player.alive = False
