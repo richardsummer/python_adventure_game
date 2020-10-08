@@ -40,20 +40,20 @@ def market():
     slowprint('Would you like to shop?')
     shop = input('Y/N \n').upper()
     if shop == 'Y':
-        shop_items = {'Torch': 25, 'Medicine': 50, 'Rope': 50}
+        shop_items = {'Torch': 25, 'Medicine': 50, 'Rope': 25, 'Pickaxe': 25}
         print('What would you like to buy?', shop_items)
         print('Your gold: ', player.gold)
         isShopping = True
 
         while isShopping is True or player.gold > 0:
 
-            buy = input('Type in name of item you want to buy: ')
+            buy = input('Type in name of item you want to buy: ').title()
             if buy == 'Medicine' and player.gold >= 50:
                 player.gold -= shop_items['Medicine']
                 player.items.append('Medicine')
                 print(player.gold)
                 continueShopping = input('Do you want to continue shopping? Y or N: \n').upper()
-                if continueShopping == 'N' and player.gold > 0:
+                if continueShopping == 'N' or player.gold > 0:
                     slowprint('You better have spent all your money..')
                     isShopping = False
                     break
@@ -62,7 +62,7 @@ def market():
                 player.items.append('Torch')
                 print(player.gold)
                 continueShopping = input('Do you want to continue shopping? Y or N: \n').upper()
-                if continueShopping == 'N' and player.gold > 0:
+                if continueShopping == 'N' or player.gold > 0:
                     slowprint('You better have spent all your money..')
                     isShopping = False
                     break
@@ -71,7 +71,7 @@ def market():
                 player.items.append('Rope')
                 print(player.gold)
                 continueShopping = input('Do you want to continue shopping? Y or N: \n').upper()
-                if continueShopping == 'N' and player.gold > 0:
+                if continueShopping == 'N' or player.gold > 0:
                     slowprint('You better have spent all your money..')
                     isShopping = False
                     break
@@ -80,7 +80,7 @@ def market():
                 player.items.append('Pickaxe')
                 print(player.gold)
                 continueShopping = input('Do you want to continue shopping? Y or N: \n').upper()
-                if continueShopping == 'N' and player.gold > 0:
+                if continueShopping == 'N' or player.gold > 0:
                     slowprint('You better have spent all your money..')
                     isShopping = False
                     break
@@ -88,9 +88,6 @@ def market():
                 slowprint('You do not have enough gold for that.')
                 print(player.items)
                 break
->>>>>>> the market funcationality is working
-
-
 
 def cave_path_1():
     slowprint('You igore all the signs to stay away from this path and march straight forward..')
@@ -121,17 +118,40 @@ def cave_path_2():
         player.hp -= 50
         slowprint(f"You approach the corgi, it seems friendly at first but as you reach out to pet it, it lashes out and bites you. Despite its small and innocent looks its bite packs a punch and you lose half your hp. You are now at {player.hp} health. The corgi runs away and you are left with a bite mark on your hand.")
         use_item()
-        if player.items == ['Potion', 'Torch']:
-            slowprint('Having lost all your gold, you decide not to go to the market.')
-            slowprint('You walk for a few minutes but suddenly an excruciating shoots up from your hand. You think to yourself "The bite mark"! The corgi was rabid, you start to feel dizzy. You lose consciousness')
-            player.alive = False
-            death(player)
-        else:
-            slowprint('You walk towards the market and notice the people there aren\'t human..')
-            market()
-    elif pet_the_dog == 'N':
-        slowprint('The corgi wimpers and begs for attention but you pay it no mind. You walk towards the market and notice the people there aren\'t human..')
+        slowprint('You walk towards the market and notice the people there aren\'t human..')
         market()
+        if 'Medicine' in player.items:
+            slowprint('You drink the medicine that cures your rabies. You evade death.')
+        else:
+            player.alive = False
+            slowprint('You forgot to buy the medicine! You slowly begin to lose consciousness.')
+            death(player)
+        if 'Pickaxe' in player.items:
+            slowprint('You continue your adventure when you suddenly feel a small breeze. It is coming from a tiny crack in the wall.\n You remember your trusty pickaxe and you begin to excavate your way out.')
+            #Richard/deep_forest
+        else:
+            slowprint('You continue your adventure when suddenly the ground beneath you starts to crumble. You fall into the abyss...')
+            #Noelle/the_hole
+    elif pet_the_dog == 'N':
+        slowprint('The corgi wimpers and begs for attention but you pay it no mind. As you walk way the dog runs up and bites your hand! .. You shake it off and walk towards the market and notice the people there aren\'t human..')
+        market()
+        if 'Medicine' in player.items:
+            slowprint('You drink the medicine that cures your rabies. You evade death.')
+        else:
+            player.alive = False
+            slowprint('You forgot to buy the medicine! You slowly begin to lose consciousness.')
+            death(player)
+        if 'Pickaxe' in player.items:
+            slowprint('You continue your adventure when you suddenly feel a small breeze. It is coming from a tiny crack in the wall.\n You remember your trusty pickaxe and you begin to excavate your way out.')
+            #Richard/deep_forest
+        else:
+            slowprint('You continue your adventure when suddenly the ground beneath you starts to crumble. You fall into the abyss...')
+            #Noelle/the_hole
+
+def cave_path_3():
+    slowprint('You choose the far right option. As you take one step forward the ground beneath you starts to crumble. You fall into the abyss..')
+    #Noelle/the_hole
+
 
 def death(player):
     if player.alive == False:
@@ -152,5 +172,14 @@ def cave():
         death(player)
     elif panic == 'N':
         slowprint('You continue down the cave until you come to a stopping point where the path divides into 3.')
-        slowprint('Hint: Your spidey senses are tinglying telling you to stay AWAY from path 1')
-# market()
+        slowprint('Hint: Your spidey senses are tinglying telling you to stay AWAY from the left path')
+        slowprint('Which path do you choose? The left, middle, or right?')
+    path = input('').lower()
+    if path == 'left':
+        cave_path_1()
+    elif path == 'middle':
+        cave_path_2()
+    elif path == 'right':
+        cave_path_3()
+
+# cave()
