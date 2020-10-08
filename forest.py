@@ -1,7 +1,7 @@
 import sys
 import time
 from os import system, name
-import deep_forest
+import players
 import cave
 
 def slowprint(str):
@@ -18,7 +18,7 @@ yes_no = ["yes", "no"]
 slowprint ("Greetings. You seem like the adventurous type.")
 slowprint ("Let's go on an adveture through the forest.")
 
-#after entering forest
+
 def forest():
     slowprint ("The first thing you see as you enter the forest is a rabbit.")
     slowprint ("He's signaling for you to come follow him. Do you want to follow him?")
@@ -28,8 +28,9 @@ def forest():
         forest_cave = input ('Y/N\n')
         if forest_cave == 'Y':
             slowprint ("Good luck!")
+            # Brian Code
         elif forest_cave == 'N':
-            slowprint ("Go in the opposite direction.")
+            slowprint ("You kill the rabbit because you don't trust him. Then you enter the cave.")
 
     elif forest_cont == 'N':
         slowprint ("Go in the opposite direction.")
@@ -40,11 +41,19 @@ def forest():
             slowprint ("You ponder if you should take the coins or leave them there. Should you take them?")
             forest_coins = input ('Y/N\n')
             if forest_coins == 'Y':
-                slowprint ("You pick up the coins, but their laced with a poisonous material and you die.")
+                slowprint ("You pick up the coins and place them in your bag.")
+                slowprint ("You continue to explore the house and in the hallway, you see two doors. Do you want to enter door A or door B?")
+                house_door = input ('A/B\n')
+                if house_door == 'A':
+                    slowprint ("This leads you outside and you go deeper into the forest")
+                    #Richard code
+                if house_door == 'B':
+                    slowprint ("There is a bear in this room and he kills you.")
             elif forest_coins == 'N':
                 slowprint ("You leave them there and exit the house to go deeper into the forest.")
+                #Richard code
         elif forest_house == 'N':
             slowprint ("Continue to go deeper into the forest.")
-            deep_forest.deepForest()
+            #Richard code
 
 forest()

@@ -3,6 +3,7 @@ import time
 from os import system, name
 import players
 
+
 def slowprint(str):
   for letter in str + '\n':
     sys.stdout.write(letter)
