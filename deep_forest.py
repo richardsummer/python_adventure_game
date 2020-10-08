@@ -51,10 +51,10 @@ def deepForest():
     walk_toward = input('Y/N \n').upper()
     if walk_toward == 'Y':
         slowprint('As you\'re walking you can feel the ground soften. Suddenly, the earth gives! You fall into a deep hole!')
-        the_hole.fall_in_hole()
+        the_hole.the_hole()
     elif walk_toward == "N":
         slowprint('You run away from the mysterious figure and find yourself back at the cave!')
         cave.cave()
 
 
-deepForest()
+# deepForest()
