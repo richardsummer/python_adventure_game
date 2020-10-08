@@ -107,4 +107,4 @@ def cave():
     elif panic == 'N':
         slowprint('You continue down the cave until you come to a stopping point where the path divides into 3.')
         slowprint('Hint: Your spidey senses are tinglying telling you to stay AWAY from path 1')
-market()
+# market()

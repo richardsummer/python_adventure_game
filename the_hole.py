@@ -19,6 +19,7 @@ def slowerprint(str):
 def clear():
     _ = system('clear')
 
+
 player = players.Player()
 
 clear()
