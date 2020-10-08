@@ -41,8 +41,9 @@ def the_lake():
     slowprint('On the lake shore is a bright, shining object, and you are immediately drawn to it.')
     slowprint('You wade through the water and eventually reach the shore, discovering an open chest, glowing with potential.\n')
     slowerprint('Inside the chest is a plain, nondescript scroll. Unraveling it reveals it is written in some foreign text. You decide to store the scroll for later.')
-    player.items['Scroll'] = 'Scroll'
-    slowerprint('\nYou obtained a Scroll!')
+    player.items.append('Scroll')
+    slowerprint('\nYou\'ve obtained a Scroll!')
+    print(player.items)
     slowprint('\n\n')
     slowprint('You return to the rope and slowly climb back up it, unsure of where to go next.')
     player_move = input('Which way do you go now? ')
@@ -50,7 +51,8 @@ def the_lake():
         while player_move == 'left':
             slowprint('Why would you go that way? You just came from there')
             player_move = input('Which way do you go now? ')
-    else: the
+    if player_move == 'right':
+        the_mineshaft()
 
 def the_hole():
     player_move = ''
@@ -84,8 +86,7 @@ def the_hole():
                 elif player_ipt == 'N':
                     player_move = 'right'
         if player_move == 'right':
-            slowprint('You decide to venture futher into the cave, the small stream guiding the way. You follow it around turns and corners in the cave until you come upon an old mineshaft. It seems as if it hasn\'t been touched in ages.')
-            # the_mineshaft()
+            the_mineshaft()
 
     if player_move == 'backwards' or player_move == 'behind' or 'Torch' not in player.items:
         if 'Torch' in player.items:
@@ -95,7 +96,6 @@ def the_hole():
         slowprint('........')
         slowprint('While stumbling around, you find yet another hole and fall down a bottomless pit to your death.')
         exit()
-
 
 
 
