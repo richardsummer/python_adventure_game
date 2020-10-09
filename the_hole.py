@@ -19,9 +19,10 @@ def slowerprint(str):
 def clear():
     _ = system('clear')
 
-banner = Figlet(font='roman')
 
 player = players.Player()
+banner = Figlet(font='roman')
+
 
 clear()
 
@@ -35,6 +36,8 @@ clear()
 # isTorch = input('And did you pack a torch? Y/N: ').upper()
 # if isTorch == 'N':
 #     player.items.pop('Torch', None)
+# if isTorch == 'Y':
+#     player.items.append('Torch')
 #
 # print(player.items)
 
@@ -119,7 +122,8 @@ def the_mineshaft():
             slowprint('Along the mineshaft corridor you can see magical markers lighting your way out. You follow it around the maze-like mineshaft until you are guided to a large frieght elevator. This might be your way out of this hole, out of this forest.')
             slowprint('\n')
             slowprint('You pull the lever at the base of the elevator, rising up into the bright light, to safety.')
-            slowerprint('\n . \n . \n . \n . \nAfter what seems like an eternity you surface in a clearing. The dark forest behind you.')
+            slowerprint('\n . \n . \n . \n . \n')
+            slowprint('After what seems like an eternity you surface in a clearing. The dark forest behind you.')
             slowprint('Relieved to have survived the forest, you walk free to continue on with your life, leaving your adventure behind.')
 
             print('\n')
@@ -198,7 +202,3 @@ def the_hole():
         slowprint('\n\n')
         slowerprint('While stumbling around, you find yet another hole and fall down a bottomless pit to your death.')
         exit()
-
-
-
-the_mineshaft()
