@@ -2,7 +2,7 @@ import sys
 import time
 from os import system, name
 import players
-
+from pyfiglet import Figlet
 
 def slowprint(str):
   for letter in str + '\n':
@@ -19,6 +19,7 @@ def slowerprint(str):
 def clear():
     _ = system('clear')
 
+banner = Figlet(font='roman')
 
 player = players.Player()
 
@@ -65,29 +66,41 @@ def the_mineshaft():
         else:
             slowprint('You think the markings on the threshold are similar to the ones on the tablet, but you\'re not quite sure what to use this for. You store it for later.')
     slowprint('You slowly find your way down the mineshaft corridor, when suddenly, your torch burns out')
-    player.items.pop('Torch')
+    player.items.remove('Torch')
     slowprint('You are shrouded in darkness, painfully aware of every bump and creak in the mineshaft supports.')
     slowprint('Behind you, you can hear a faint clicking noise, and what sounds like nails on a chalkboard.')
     slowerprint('What do you do now?')
-    player_action = input('run // use item // nothing').lower()
-    while player_action != 'run' or player_action != 'use item' or player_action != 'nothing':
-        slowprint('You cannot do that right now')
-        player_action = input('run // use item // nothing').lower()
+    player_action = input('run // use item // nothing\n').lower()
+    if player_action == 'run':
+        slowprint('You flee the creature, running until you have no room left to run. The creature is biting at your heels the entire way, eventually cornering you and killing you.')
+        exit()
+    if player_action == 'nothing':
+        slowprint('Your nihilism and apathy take hold and you choose to surrender your fate to the creature. It doesn\'t exhibit any remorse as it horrendously devours your motionless body.')
+        exit()
     if player_action == 'use item':
         print(player.items)
-        item_action = slowprint(input('Which item would you like to use? ')).title()
+        item_action = input('Which item would you like to use? ')
+        item_action.title()
         while item_action not in player.items:
             slowprint('\nYou do not have that item in your bag.')
             print(player.items)
-            item_action = slowprint(input('Which item would you like to use? ')).title()
+            item_action = input('Which item would you like to use? ')
 
         if item_action == 'Potion':
             slowprint('\nYou drink a health potion and restore 25 health.')
-            slowprint('Your health: ', player.health)
-            player.items.pop('Potion')
-            print(player.items)
+            slowprint('While drinking the potoin, the creature attacks you, ending your adventure.')
+            exit()
         elif item_action == 'Torch':
-            slowprint('\nYou light a new torch, revealing the source of the awful noises. It is a man-sized spider that pounces you, devouring you.')
+            slowprint('\nYou light a new torch, revealing the source of the awful noises. It is a man-sized spider which recoils at the bright torch in your hand. You aggressively wave it in the spiders direction, scaring it off. Relieved to have survived the spider encounter, you venture further into the mineshaft...cautiously.')
+            slowprint('The mineshaft leads you around corners and bends to a large room with a freight elevator in it.')
+            slowprint('You pull the lever at the base of the elevator, rising up into the bright light, to safety.')
+            slowerprint('\n . \n . \n . \n . \nAfter what seems like an eternity you surface in a clearing. The dark forest behind you.')
+            slowprint('Relieved to have survived the forest, you walk free to continue on with your life, leaving your adventure behind.')
+
+            print('\n')
+            print(banner.renderText('Congratulations!'))
+            print('\n\n')
+            slowprint('Run the file "forest.py" again if you\'d like to go on another adventure.')
             exit()
         elif item_action == 'Rope':
             slowprint('\nYou pull out your rope, creating a lasso like you\'re trying to wrangle the creature threatening you. Because you can\'t see a thing you miss and are slaughtered by the mysterious beast.')
@@ -98,6 +111,9 @@ def the_mineshaft():
         elif item_action == 'Pickaxe':
             slowprint('\nYou wield your pickaxe, but still can\'t see what is threatening you. You swing wildly, damaging the beast but miss your follow up strike. The beast uses this opportunity to maul you, ending your adventure.')
             exit()
+        elif item_action == 'Rosetta Stone':
+            slowprint('\nYou toss the Rosetta Stone at the monster. It does nothing. You are violently murdered.')
+            exit()
         elif item_action == 'Scroll of Clarity':
             slowprint('\nYou remember the words inscribed on the Scroll, and hurriedly search your bag for it. You unravel the scroll and immediately the mineshaft is filled with a blinding bright light emanating from the scroll. The creature is revealed to be a massive spider, which recoils at the power of the Scroll. It scurries away to whatever hole it came from.')
             slowprint('Along the mineshaft corridor you can see magical markers lighting your way out. You follow it around the maze-like mineshaft until you are guided to a large frieght elevator. This might be your way out of this hole, out of this forest.')
@@ -105,6 +121,12 @@ def the_mineshaft():
             slowprint('You pull the lever at the base of the elevator, rising up into the bright light, to safety.')
             slowerprint('\n . \n . \n . \n . \nAfter what seems like an eternity you surface in a clearing. The dark forest behind you.')
             slowprint('Relieved to have survived the forest, you walk free to continue on with your life, leaving your adventure behind.')
+
+            print('\n')
+            print(banner.renderText('Congratulations!'))
+            print('\n\n')
+            slowprint('Run the file "forest.py" again if you\'d like to go on another adventure.')
+            exit()
 
 
 def the_lake():
@@ -179,4 +201,4 @@ def the_hole():
 
 
 
-the_hole()
+the_mineshaft()
