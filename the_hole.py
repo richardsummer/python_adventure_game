@@ -25,15 +25,17 @@ player = players.Player()
 clear()
 
 # dev tools
-isRope = input('Did you pack a rope? Y/N: ').upper()
-if isRope == 'Y':
-    player.items.append('Rope')
-
-isTorch = input('And did you pack a torch? Y/N: ').upper()
-if isTorch == 'N':
-    player.items.pop('Torch')
-
-print(player.items)
+# isRope = input('Did you pack a rope? Y/N: ').upper()
+# if isRope == 'N':
+#     player.items.pop('Rope', None)
+# if isRope == 'Y':
+#     player.items.append('Rope')
+#
+# isTorch = input('And did you pack a torch? Y/N: ').upper()
+# if isTorch == 'N':
+#     player.items.pop('Torch', None)
+#
+# print(player.items)
 
 # -----------------------------------------------------------------------------
 
@@ -103,7 +105,7 @@ def the_mineshaft():
             slowprint('You pull the lever at the base of the elevator, rising up into the bright light, to safety.')
             slowerprint('\n . \n . \n . \n . \nAfter what seems like an eternity you surface in a clearing. The dark forest behind you.')
             slowprint('Relieved to have survived the forest, you walk free to continue on with your life, leaving your adventure behind.')
-            
+
 
 def the_lake():
     slowprint('\n\n\n')
