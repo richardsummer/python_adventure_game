@@ -39,7 +39,7 @@ def forest():
         slowprint ("You happen to stumble upon an old abandoned house. Should you enter?")
         forest_house = input('Y/N\n').upper()
         if forest_house == 'Y':
-            slowprint ("You explore the house and come across a crest with gold coins.")
+            slowprint ("You explore the house and come across a chest with gold coins.")
             slowprint ("You ponder if you should take the coins or leave them there. Should you take them?")
             forest_coins = input('Y/N\n').upper()
             if forest_coins == 'Y':
