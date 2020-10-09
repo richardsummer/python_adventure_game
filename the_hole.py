@@ -81,8 +81,29 @@ def the_mineshaft():
 
         if item_action == 'Potion':
             slowprint('\nYou drink a health potion and restore 25 health.')
-            print('Your health ', player.health)
-        elif item_action == 'Torch'
+            slowprint('Your health: ', player.health)
+            player.items.pop('Potion')
+            print(player.items)
+        elif item_action == 'Torch':
+            slowprint('\nYou light a new torch, revealing the source of the awful noises. It is a man-sized spider that pounces you, devouring you.')
+            exit()
+        elif item_action == 'Rope':
+            slowprint('\nYou pull out your rope, creating a lasso like you\'re trying to wrangle the creature threatening you. Because you can\'t see a thing you miss and are slaughtered by the mysterious beast.')
+            exit()
+        elif item_action == 'Medicine':
+            slowprint('\nYou pull out your medicine from the goblin market. It does nothing but calm your nerves. The creature attacks while you are sealing the medicine, killing you.')
+            exit()
+        elif item_action == 'Pickaxe':
+            slowprint('\nYou wield your pickaxe, but still can\'t see what is threatening you. You swing wildly, damaging the beast but miss your follow up strike. The beast uses this opportunity to maul you, ending your adventure.')
+            exit()
+        elif item_action == 'Scroll of Clarity':
+            slowprint('\nYou remember the words inscribed on the Scroll, and hurriedly search your bag for it. You unravel the scroll and immediately the mineshaft is filled with a blinding bright light emanating from the scroll. The creature is revealed to be a massive spider, which recoils at the power of the Scroll. It scurries away to whatever hole it came from.')
+            slowprint('Along the mineshaft corridor you can see magical markers lighting your way out. You follow it around the maze-like mineshaft until you are guided to a large frieght elevator. This might be your way out of this hole, out of this forest.')
+            slowprint('\n')
+            slowprint('You pull the lever at the base of the elevator, rising up into the bright light, to safety.')
+            slowerprint('\n . \n . \n . \n . \nAfter what seems like an eternity you surface in a clearing. The dark forest behind you.')
+            slowprint('Relieved to have survived the forest, you walk free to continue on with your life, leaving your adventure behind.')
+            
 
 def the_lake():
     slowprint('\n\n\n')
