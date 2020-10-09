@@ -177,11 +177,7 @@ def cave():
         death(player)
     elif panic == 'N':
         slowprint('You continue down the cave until you come to a stopping point where the path divides into 3.')
-<<<<<<< HEAD
-        slowprint('Hint: Your spidey senses are tingling telling you to stay AWAY from the left path')
-=======
         slowprint('Hint: Your spidey senses are tingling telling you to stay AWAY from the left path.')
->>>>>>> e1c9b8bb49120ecac6951d6c9e82fdd7dbdd0f0d
         slowprint('Which path do you choose? The left, middle, or right?')
     path = input('').lower()
     if path == 'left':
