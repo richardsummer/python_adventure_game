@@ -48,7 +48,7 @@ def market():
         print('Your gold: ', player.gold)
         isShopping = True
 
-        while isShopping is True or player.gold > 0:
+        while isShopping is True and player.gold >= 0:
 
             buy = input('Type in name of item you want to buy: ').title()
             if buy == 'Medicine' and player.gold >= 50:
@@ -56,7 +56,7 @@ def market():
                 player.items.append('Medicine')
                 print(player.gold)
                 continueShopping = input('Do you want to continue shopping? Y or N: \n').upper()
-                if continueShopping == 'N' or player.gold > 0:
+                if continueShopping == 'N' and player.gold > 0:
                     slowprint('You better have spent all your money..')
                     isShopping = False
                     break
@@ -65,30 +65,31 @@ def market():
                 player.items.append('Torch')
                 print(player.gold)
                 continueShopping = input('Do you want to continue shopping? Y or N: \n').upper()
-                if continueShopping == 'N' or player.gold > 0:
+                if continueShopping == 'N' and player.gold > 0:
                     slowprint('You better have spent all your money..')
                     isShopping = False
                     break
-            elif buy == 'Rope':
+            elif buy == 'Rope' and player.gold >= 25:
                 player.gold -= shop_items['Rope']
                 player.items.append('Rope')
                 print(player.gold)
                 continueShopping = input('Do you want to continue shopping? Y or N: \n').upper()
-                if continueShopping == 'N' or player.gold > 0:
+                if continueShopping == 'N' and player.gold > 0:
                     slowprint('You better have spent all your money..')
                     isShopping = False
                     break
-            elif buy == 'Pickaxe':
+            elif buy == 'Pickaxe' and player.gold >= 25:
                 player.gold -= shop_items['Pickaxe']
                 player.items.append('Pickaxe')
                 print(player.gold)
                 continueShopping = input('Do you want to continue shopping? Y or N: \n').upper()
-                if continueShopping == 'N' or player.gold > 0:
+                if continueShopping == 'N' and player.gold > 0:
                     slowprint('You better have spent all your money..')
                     isShopping = False
                     break
-            else:
+            elif player.gold == 0:
                 slowprint('You do not have enough gold for that.')
+                isShopping = False
                 print(player.items)
                 break
 
@@ -97,7 +98,7 @@ def cave_path_1():
     slowprint('The cave suddenly gets colder as you continue down this path and in the short distance you see a bear laying motionless on the cold cave floor.\n You aren\'t sure if it\'s alive or dead. \n There is a stick on the ground you could use. Do you check to see if it is alive?')
     check_bear_status = input('Y/N \n').upper()
     if check_bear_status == 'Y':
-        slowprint('You grab a stick off the floor and proceed to poke the bear.. That wasn\'t a very good idea.. the bear now angry from being woken up from its slumber lunges at you..')
+        slowprint('You grab a stick off the floor and proceed to poke the bear.. That wasn\'t a very good idea.. the bear is now angry from being woken up from its slumber. It lunges at you..')
         player.alive = False
         death(player)
     if check_bear_status == 'N':
@@ -136,7 +137,7 @@ def cave_path_2():
             slowprint('You continue your adventure when suddenly the ground beneath you starts to crumble. You fall into the abyss...')
             the_hole.the_hole()
     elif pet_the_dog == 'N':
-        slowprint('The corgi wimpers and begs for attention but you pay it no mind. As you walk way the dog runs up and bites your hand! .. You shake it off and walk towards the market and notice the people there aren\'t human..')
+        slowprint('The corgi wimpers and begs for attention but you pay it no mind. As you walk away the dog runs up and bites your hand! .. You shake it off and walk towards the market and notice the people there aren\'t human..')
         market()
         if 'Medicine' in player.items:
             slowprint('You drink the medicine that cures your rabies. You evade death.')
@@ -158,25 +159,25 @@ def cave_path_3():
 
 def death(player):
     if player.alive == False:
-        slowprint('Oh? Looks like you died')
+        slowprint('Oh? Looks like you died.')
         exit()
 
 def cave():
     slowprint('You come across a cave deep in the forest, do you go into the cave?')
     cave_cont = input('Y/N \n').upper()
     if cave_cont == 'Y':
-        slowprint('As you descend the cave you hear a loud crash behind you, you look back to see that you are now trapped inside the cave. Do you panic?')
+        slowprint('As you descend into the cave, you hear a loud crash behind you. You look back to see that you are now trapped inside the cave. Do you panic?')
     elif cave_cont == 'N':
-        slowprint('You continue deeper into the forest')
+        slowprint('You continue deeper into the forrest')
         deep_forest.deepForest()
     panic = input('Y/N \n').upper()
     if panic == 'Y':
         player.alive = False
-        slowprint('While you panic you fail to notice that you caused a rockslide. You inevitably end up dying.')
+        slowprint('While you panic you fail to notice that you caused a rockslide. You inevitable end up dying.')
         death(player)
     elif panic == 'N':
         slowprint('You continue down the cave until you come to a stopping point where the path divides into 3.')
-        slowprint('Hint: Your spidey senses are tingling, telling you to stay AWAY from the left path')
+        slowprint('Hint: Your spidey senses are tingling telling you to stay AWAY from the left path.')
         slowprint('Which path do you choose? The left, middle, or right?')
     path = input('').lower()
     if path == 'left':
@@ -186,7 +187,4 @@ def cave():
     elif path == 'right':
         cave_path_3()
 
-
-# cave()
-
-#market()
+# market()
