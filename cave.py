@@ -2,6 +2,8 @@ import sys
 import time
 from os import system, name
 import players
+import deep_forest
+import the_hole
 
 
 def slowprint(str):
@@ -91,7 +93,7 @@ def market():
                 break
 
 def cave_path_1():
-    slowprint('You igore all the signs to stay away from this path and march straight forward..')
+    slowprint('You ignore all the signs to stay away from this path and march straight forward..')
     slowprint('The cave suddenly gets colder as you continue down this path and in the short distance you see a bear laying motionless on the cold cave floor.\n You aren\'t sure if it\'s alive or dead. \n There is a stick on the ground you could use. Do you check to see if it is alive?')
     check_bear_status = input('Y/N \n').upper()
     if check_bear_status == 'Y':
@@ -129,10 +131,10 @@ def cave_path_2():
             death(player)
         if 'Pickaxe' in player.items:
             slowprint('You continue your adventure when you suddenly feel a small breeze. It is coming from a tiny crack in the wall.\n You remember your trusty pickaxe and you begin to excavate your way out.')
-            #Richard/deep_forest
+            deep_forest.deepForest()
         else:
             slowprint('You continue your adventure when suddenly the ground beneath you starts to crumble. You fall into the abyss...')
-            #Noelle/the_hole
+            the_hole.the_hole()
     elif pet_the_dog == 'N':
         slowprint('The corgi wimpers and begs for attention but you pay it no mind. As you walk way the dog runs up and bites your hand! .. You shake it off and walk towards the market and notice the people there aren\'t human..')
         market()
@@ -144,14 +146,14 @@ def cave_path_2():
             death(player)
         if 'Pickaxe' in player.items:
             slowprint('You continue your adventure when you suddenly feel a small breeze. It is coming from a tiny crack in the wall.\n You remember your trusty pickaxe and you begin to excavate your way out.')
-            #Richard/deep_forest
+            deep_forest.deepForest()
         else:
             slowprint('You continue your adventure when suddenly the ground beneath you starts to crumble. You fall into the abyss...')
-            #Noelle/the_hole
+            the_hole.the_hole()
 
 def cave_path_3():
     slowprint('You choose the far right option. As you take one step forward the ground beneath you starts to crumble. You fall into the abyss..')
-    #Noelle/the_hole
+    the_hole.the_hole()
 
 
 def death(player):
@@ -166,10 +168,11 @@ def cave():
         slowprint('As you descend the cave you hear a loud crash behind you, you look back to see that you are now trapped inside the cave. Do you panic?')
     elif cave_cont == 'N':
         slowprint('You continue deeper into the forrest')
+        deep_forest.deepForest()
     panic = input('Y/N \n').upper()
     if panic == 'Y':
         player.alive = False
-        slowprint('While you panick you fail to notice that you caused a rockslide. You inevitable end up dying.')
+        slowprint('While you panic you fail to notice that you caused a rockslide. You inevitable end up dying.')
         death(player)
     elif panic == 'N':
         slowprint('You continue down the cave until you come to a stopping point where the path divides into 3.')
