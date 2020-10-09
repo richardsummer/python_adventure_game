@@ -186,8 +186,7 @@ def cave():
     elif path == 'right':
         cave_path_3()
 
-<<<<<<< HEAD
+
 # cave()
-=======
+
 #market()
->>>>>>> modified
