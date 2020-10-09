@@ -167,7 +167,7 @@ def cave():
     if cave_cont == 'Y':
         slowprint('As you descend the cave you hear a loud crash behind you, you look back to see that you are now trapped inside the cave. Do you panic?')
     elif cave_cont == 'N':
-        slowprint('You continue deeper into the forrest')
+        slowprint('You continue deeper into the forest')
         deep_forest.deepForest()
     panic = input('Y/N \n').upper()
     if panic == 'Y':
@@ -176,7 +176,7 @@ def cave():
         death(player)
     elif panic == 'N':
         slowprint('You continue down the cave until you come to a stopping point where the path divides into 3.')
-        slowprint('Hint: Your spidey senses are tinglying telling you to stay AWAY from the left path')
+        slowprint('Hint: Your spidey senses are tingling, telling you to stay AWAY from the left path')
         slowprint('Which path do you choose? The left, middle, or right?')
     path = input('').lower()
     if path == 'left':
