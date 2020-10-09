@@ -26,18 +26,63 @@ clear()
 
 # dev tools
 isRope = input('Did you pack a rope? Y/N: ').upper()
-if isRope == 'N':
-    player.items.pop('Rope', None)
 if isRope == 'Y':
     player.items.append('Rope')
 
 isTorch = input('And did you pack a torch? Y/N: ').upper()
 if isTorch == 'N':
-    player.items.pop('Torch', None)
+    player.items.pop('Torch')
 
 print(player.items)
 
 # -----------------------------------------------------------------------------
+
+def the_mineshaft():
+    slowprint('\n\n\n')
+    slowprint('You follow the stream deeper into the cave. Twisting around corners and bends, you follow it for what seems like forever. Eventually you come upon an old mineshaft.')
+    slowprint('\nIt looks as if it hasn\'t been used in ages, maybe even centuries. You stop to observe the entrance, afraid of what might be inside.')
+    slowprint('There are markings surrounding the threshold, and and cobwebs full of small spiders covering a small alcove just inside the entrance to the mineshaft.')
+    if 'Scroll' in player.items:
+        slowprint('\n** You notice the markings are vaguely similar to the scroll you found on the lakeshore. **\n')
+    slowprint('You are desperate to find a way out, so you decide to press on into the mineshaft. You stop at the small alcove covered in cobwebs for a moment. Would you like to go inside?')
+    player_ipt = input('Y/N: ').upper()
+    if player_ipt == 'Y':
+        slowprint('You burn away the cobwebs with your torch, revealing what appears to be living quarters.')
+        slowprint('There are a few skeletons propped against the walls and laying against a set of chairs.')
+        slowprint('Walking into the room, you find a small stone tablet with markings covering it. Alongside those markings are translations to an archaic version of your native tongue.\n')
+        player.items.append('Rosetta Stone')
+        slowerprint('You\'ve found a Rosetta Stone!')
+        print(player.items)
+        if 'Scroll' in player.items:
+            slowprint('\nYou remember the scroll you found in the lake. Hurriedly, you scramble through your bag to find it and decipher the text and markings within.\n')
+            slowerprint("CLARITY CAN BE FOUND WITHIN: READ THIS SCROLL WHEN IN DANGER TO FIND YOUR PATH TO SAFETY")
+            player.items.pop('Scroll')
+            player.items.append('Scroll of Clarity')
+            slowprint('You got the Scroll of Clarity!')
+            print(player.items)
+        else:
+            slowprint('You think the markings on the threshold are similar to the ones on the tablet, but you\'re not quite sure what to use this for. You store it for later.')
+    slowprint('You slowly find your way down the mineshaft corridor, when suddenly, your torch burns out')
+    player.items.pop('Torch')
+    slowprint('You are shrouded in darkness, painfully aware of every bump and creak in the mineshaft supports.')
+    slowprint('Behind you, you can hear a faint clicking noise, and what sounds like nails on a chalkboard.')
+    slowerprint('What do you do now?')
+    player_action = input('run // use item // nothing').lower()
+    while player_action != 'run' or player_action != 'use item' or player_action != 'nothing':
+        slowprint('You cannot do that right now')
+        player_action = input('run // use item // nothing').lower()
+    if player_action == 'use item':
+        print(player.items)
+        item_action = slowprint(input('Which item would you like to use? ')).title()
+        while item_action not in player.items:
+            slowprint('\nYou do not have that item in your bag.')
+            print(player.items)
+            item_action = slowprint(input('Which item would you like to use? ')).title()
+
+        if item_action == 'Potion':
+            slowprint('\nYou drink a health potion and restore 25 health.')
+            print('Your health ', player.health)
+        elif item_action == 'Torch'
 
 def the_lake():
     slowprint('\n\n\n')
@@ -45,9 +90,9 @@ def the_lake():
     slowprint('Scaling down the rock wall you just passed through, you eventually reach the surface of the lake. It\'s shallower than you expected, and you are able to stand, the water barely covering your shins.')
     slowprint('On the lake shore is a bright, shining object, and you are immediately drawn to it.')
     slowprint('You wade through the water and eventually reach the shore, discovering an open chest, glowing with potential.\n')
-    slowerprint('Inside the chest is a plain, nondescript scroll. Unraveling it reveals it is written in some foreign text. You decide to store the scroll for later.')
+    slowerprint('Inside the chest is a plain, nondescript scroll. Unraveling the scroll reveals it is written in some ancient language, full of markings and symbols. You decide to store the scroll for later, although you\'re not sure what to use it for.')
     player.items.append('Scroll')
-    slowerprint('\nYou\'ve obtained a Scroll!')
+    slowerprint('You\'ve obtained a Scroll!')
     print(player.items)
     slowprint('\n\n')
     slowprint('You return to the rope and slowly climb back up it, unsure of where to go next.')
@@ -61,12 +106,13 @@ def the_lake():
 
 def the_hole():
     player_move = ''
-    slowprint('You slowly come to, not sure where or when you are.\nSitting up, you are disoriented by the ringing in your head, most likely from the fall. It seems that you should be more careful next time you go spelunking.\nStill foggy-headed, you realize you can\'t see a thing.')
+    slowprint('\nYou slowly come to, not sure of where or when you are.\n\nSitting up, you are disoriented by the ringing in your head, most likely from the fall. It seems that you should be more careful next time you go spelunking.')
+    slowprint('\nStill foggy-headed, you realize you can\'t see a thing.')
     if 'Torch' in player.items:
-        slowprint('You light a torch, illuminating the small room. You see damp rock walls, covered in moss and mildew, and to your right, a small stream ahead of you leading further into the cave. Looking to your left, you see a crack in the rocks, just barely big enough for a person to fit through...\nMaybe.\nJust behind where you landed is a bottomless pit.\nWhich way do you go?')
+        slowprint('\nYou light a torch, illuminating the small room. You see damp rock walls, covered in moss and mildew, and to your right, a small stream ahead of you leading further into the cave. Looking to your left, you see a crack in the rocks, just barely big enough for a person to fit through...\nMaybe.\nJust behind where you landed is a bottomless pit.\nWhich way do you go?')
         player_move = input('').lower()
         if player_move == 'left':
-            slowprint('You pass on going deeper into the cave, contemplating still whether a person could fit through the hole in the rock wall. You skipped a few meals this morning, so if you suck in your stomach and position just the right way, you think you could do it.\nYou\'re unsure what\'s on the other side of the wall. Do you investigate further?')
+            slowprint('\nYou pass on going deeper into the cave, contemplating still whether a person could fit through the hole in the rock wall. You skipped a few meals this morning, so if you suck in your stomach and position just the right way, you think you could do it.\nYou\'re unsure what\'s on the other side of the wall. Do you investigate further?')
             player_ipt = input('Y/N: ').upper()
             if player_ipt == 'Y':
                 slowprint('The torch barely illuminates through the crack in the rock wall; you can make out the sound of running water, and what sounds like an item in a video game that would help you out. Unfortunately you can\'t see anything through the crack, as if there were just emptiness on the other side. Do you continue anyways?')
@@ -78,7 +124,10 @@ def the_hole():
                         slowprint('You squeeze through the crack in the wall, heeding slightly more caution. You lose your balance as theres no solid ground on the other side and you fall multiple stories into a shallow lake and break all the bones in your body. The promise of treasure and items curses you to death.')
                         exit()
                 elif player_ipt =='N':
-                    player_move = 'right'
+                    player_move = input('Which way do you go now? ')
+                    while player_move == 'left':
+                        slowprint('Why would you go that way? You just came from there')
+                        player_move = input('Which way do you go now? ')
             elif player_ipt == 'N':
                 slowprint('How dangerous could a hole in the wall be anyways? Do you attempt to fit through?')
                 player_ipt = input('Y/N ').upper()
@@ -89,7 +138,10 @@ def the_hole():
                         slowprint('You squeeze through the crack in the wall, confident you\'ve made the right choice. You lose your balance as theres no solid ground on the other side and you fall multiple stories into a shallow lake and horribly die from the impact. Ignorance spells your demise.')
                         exit()
                 elif player_ipt == 'N':
-                    player_move = 'right'
+                    player_move = input('Which way do you go now? ')
+                    while player_move == 'left':
+                        slowprint('Why would you go that way? You just came from there')
+                        player_move = input('Which way do you go now? ')
         if player_move == 'right':
             the_mineshaft()
 
@@ -98,10 +150,10 @@ def the_hole():
             slowprint('For some ungodly reason, you decide to go into the bottomless pit behind you. Way to go stupid. You fall forever and are stuck in a Lovecraftian horror of never dying but never living at all.')
             exit()
         slowprint('You fumble around in your bag, searching for a torch. You can\'t find one and resort to feeling your way around in the dark.')
-        slowprint('........')
-        slowprint('While stumbling around, you find yet another hole and fall down a bottomless pit to your death.')
+        slowprint('\n\n')
+        slowerprint('While stumbling around, you find yet another hole and fall down a bottomless pit to your death.')
         exit()
 
 
 
-# the_hole()
+the_hole()
