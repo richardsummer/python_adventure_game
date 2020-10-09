@@ -172,7 +172,7 @@ def cave():
     panic = input('Y/N \n').upper()
     if panic == 'Y':
         player.alive = False
-        slowprint('While you panic you fail to notice that you caused a rockslide. You inevitable end up dying.')
+        slowprint('While you panic you fail to notice that you caused a rockslide. You inevitably end up dying.')
         death(player)
     elif panic == 'N':
         slowprint('You continue down the cave until you come to a stopping point where the path divides into 3.')
