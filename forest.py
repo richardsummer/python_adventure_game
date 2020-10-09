@@ -15,6 +15,7 @@ def clear():
 
 yes_no = ["yes", "no"]
 
+player = players.Player()
 
 
 slowprint ("Greetings. You seem like the adventurous type.")
